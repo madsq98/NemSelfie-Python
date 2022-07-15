@@ -4,12 +4,15 @@ import SelfieLibrary
 cam = SelfieLibrary.startCamera()
 
 def on_move(x, y):
-    SelfieLibrary.startSelfie(cam)
+    SelfieLibrary.doSelfie(cam)
 
 def on_click(x, y, button, pressed):
+    SelfieLibrary.doSelfie(cam)
+
+def init():
+    cam.start_preview()
+
     SelfieLibrary.startSelfie(cam)
 
-cam.start_preview()
-
-with Listener(on_move=on_move, on_click=on_click) as listener:
-    listener.join()
+    with Listener(on_move=on_move, on_click=on_click) as listener:
+        listener.join()
