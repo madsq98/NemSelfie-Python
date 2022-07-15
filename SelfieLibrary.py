@@ -33,6 +33,7 @@ def takeSelfie(camera):
     camera.brightness = opt.FLASH_BRIGHTNESS
     sleep(0.2)
 
+    camera.brightness = opt.PICTURE_BRIGHTNESS
     camera.annotate_text = ""
     camera.capture('test-selfie.jpg')
 
