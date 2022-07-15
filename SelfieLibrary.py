@@ -67,6 +67,7 @@ def takeSelfie(camera):
 
     camera.annotate_text = opt.PICTURE_TEXT_AFTER
 
+    camera.stop_preview()
     showPicture(saveLocation)
     sleep(3)
 
