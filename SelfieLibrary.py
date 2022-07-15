@@ -58,7 +58,7 @@ def showPicture(picture):
             pygame.display.update()
 
 def startCamera():
-    camera = PiCamera()
+    camera = ""
 
     return camera
 
