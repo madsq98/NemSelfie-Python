@@ -25,5 +25,3 @@ def pyGameTest():
             if event.type == pygame.QUIT:
                 cam.stop()
             pygame.quit()
-            sys.exit()
-
