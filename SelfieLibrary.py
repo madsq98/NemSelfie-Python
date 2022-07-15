@@ -1,6 +1,29 @@
 from picamera import PiCamera
 from time import sleep
 import selfieOptions as opt
+from datetime import datetime
+import pygame
+
+def showPicture(picture):
+    pygame.init()
+    white = (255, 255, 255)
+
+    display_surface = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y))
+
+    pygame.display.set_caption('Image')
+
+    img = pygame.image.load(picture)
+
+    while True:
+        display_surface.fill(white)
+
+        display_surface.blit(img, (0, 0))
+
+        for event in pygame.event.get() :
+            if event.type == pygame.QUIT :
+                pygame.quit()
+
+            pygame.display.update()
 
 def startCamera():
     camera = PiCamera()
@@ -35,9 +58,16 @@ def takeSelfie(camera):
 
     camera.brightness = opt.PICTURE_BRIGHTNESS
     camera.annotate_text = ""
-    camera.capture('test-selfie.jpg')
+
+    dt = datetime.now()
+    ts = datetime.timestamp(dt)
+    saveLocation = opt.PICTURES_LOCATION + "selfie-" + str(ts) + ".jpg"
+
+    camera.capture(saveLocation)
 
     camera.annotate_text = opt.PICTURE_TEXT_AFTER
+
+    showPicture(saveLocation)
     sleep(3)
 
     camera.annotate_text = ""
