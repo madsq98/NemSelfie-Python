@@ -3,6 +3,38 @@ from time import sleep
 import selfieOptions as opt
 from datetime import datetime
 import pygame
+import io
+
+def pyGameTest():
+    cam = startCamera()
+
+    pygame.init()
+    screen = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y))
+
+    rgb = bytearray(cam.resolution[0] * cam.resolution[1] * 3)
+
+    exitFlag = True
+    while(exitFlag):
+        for event in pygame.event.get():
+            if(event.type is pygame.QUIT):
+                exitFlag = False
+
+        stream = io.BytesIO
+        camera.capture(stream, use_Video_port=True, format='rgb')
+        stream.seek(0)
+        stream.readinto(rgb)
+        stream.close()
+
+        img = pygame.image.frombuffer(rgb[0:(camera.resolution[0] * camera.resolution[1] * 3)], camera.resolution, 'RGB')
+
+        screen.fill(0)
+        if img:
+            screen.blit(img, (opt.SCREEN_X, opt.SCREEN_Y))
+
+        pygame.display.update()
+
+    cam.close()
+    pygame.display.quit()
 
 def showPicture(picture):
     pygame.init()
