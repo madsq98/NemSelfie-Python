@@ -20,7 +20,7 @@ def pyGameTest():
                 exitFlag = False
 
         stream = io.BytesIO
-        camera.capture(stream, use_Video_port=True, format='rgb')
+        cam.capture(stream, use_Video_port=True, format='rgb')
         stream.seek(0)
         stream.readinto(rgb)
         stream.close()
