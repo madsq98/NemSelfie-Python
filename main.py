@@ -4,10 +4,10 @@ import SelfieLibrary
 cam = SelfieLibrary.startCamera()
 
 def on_move(x, y):
-    SelfieLibrary.doSelfie(cam)
+    SelfieLibrary.takeSelfie(cam)
 
 def on_click(x, y, button, pressed):
-    SelfieLibrary.doSelfie(cam)
+    SelfieLibrary.takeSelfie(cam)
 
 def init():
     cam.start_preview()
