@@ -6,34 +6,44 @@ import pygame
 import io
 
 def pyGameTest():
-    cam = PiCamera()
-
     pygame.init()
-    screen = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y))
+    screen = pygame.display.set_mode((0, 0))
 
-    rgb = bytearray(cam.resolution[0] * cam.resolution[1] * 3)
+    # Init camera
+    camera = PiCamera()
+    camera.resolution = (1280, 720)
+    camera.crop = (0.0, 0.0, 1.0, 1.0)
 
+    x = (screen.get_width() - camera.resolution[0]) / 2
+    y = (screen.get_height() - camera.resolution[1]) / 2
+
+    # Init buffer
+    rgb = bytearray(camera.resolution[0] * camera.resolution[1] * 3)
+
+    # Main loop
     exitFlag = True
-    while(exitFlag):
+    while (exitFlag):
         for event in pygame.event.get():
-            if(event.type is pygame.QUIT):
+            if (event.type is pygame.MOUSEBUTTONDOWN or
+                    event.type is pygame.QUIT):
                 exitFlag = False
 
-        stream = io.BytesIO
-        cam.capture(stream, use_Video_port=True, format='rgb')
+        stream = io.BytesIO()
+        camera.capture(stream, use_video_port=True, format='rgb')
         stream.seek(0)
         stream.readinto(rgb)
         stream.close()
-
-        img = pygame.image.frombuffer(rgb[0:(camera.resolution[0] * camera.resolution[1] * 3)], camera.resolution, 'RGB')
+        img = pygame.image.frombuffer(rgb[0:
+                                          (camera.resolution[0] * camera.resolution[1] * 3)],
+                                      camera.resolution, 'RGB')
 
         screen.fill(0)
         if img:
-            screen.blit(img, (opt.SCREEN_X, opt.SCREEN_Y))
+            screen.blit(img, (x, y))
 
         pygame.display.update()
 
-    cam.close()
+    camera.close()
     pygame.display.quit()
 
 def showPicture(picture):
