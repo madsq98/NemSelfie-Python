@@ -6,7 +6,7 @@ import pygame
 import io
 
 def pyGameTest():
-    cam = startCamera()
+    cam = PiCamera()
 
     pygame.init()
     screen = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y))
