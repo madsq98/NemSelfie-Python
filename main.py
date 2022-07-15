@@ -1,4 +1,4 @@
-from pynput.mouse import Listener
+#from pynput.mouse import Listener
 import SelfieLibrary
 
 cam = SelfieLibrary.startCamera()
