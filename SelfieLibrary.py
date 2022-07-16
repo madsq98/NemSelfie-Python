@@ -207,7 +207,7 @@ def pyGameTest():
 
                     # Check for press on Save Picture
                     if (buttonWidth < touch_x < opt.SCREEN_X) and (bottomLeft_y < touch_y < (bottomLeft_y + buttonHeight)):
-                        th = threading.Thread(target=saveImage, args=(image1))
+                        th = threading.Thread(target=saveImage, args=(capturedImagePy))
                         th.start()
                         th.join()
                         capturedImageSaved = True
