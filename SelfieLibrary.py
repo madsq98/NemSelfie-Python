@@ -7,6 +7,7 @@ from datetime import datetime
 import pygame
 import io
 import pygame.camera
+from pygame._sdl2 import touch
 
 takePicture = False
 brightnessTimerSet = False
@@ -160,9 +161,14 @@ def pyGameTest():
                 if not capturedImage:
                     takePicture = True
                 else:
-                    finger_pos = pygame.mouse.get_pos()
-                    print(finger_pos)
+                    touchScreen = touch.get_device(0)
+                    activeFinger = pygame._sdl2.touch.get_finger(touchScreen, 0)
 
+                    touch_x = activeFinger.get('x')
+                    touch_y = activeFinger.get('y')
+
+                    print('X: ' + str(touch_x))
+                    print('Y: ' + str(touch_y))
             if event.type == pygame.KEYDOWN:
                 cam.stop()
                 pygame.quit()
