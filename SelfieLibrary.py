@@ -72,8 +72,7 @@ def pyGameTest():
 
         if not cameraStopped:
             image1 = pygame.transform.scale(image1, (opt.SCREEN_X, opt.SCREEN_Y))
-
-        screen.blit(image1, (0, 0))
+            screen.blit(image1, (0, 0))
 
         buttonWidth = opt.SCREEN_X / 2
         buttonHeight = opt.SCREEN_Y / 6
