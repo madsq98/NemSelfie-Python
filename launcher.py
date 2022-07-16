@@ -23,6 +23,7 @@ def have_internet():
 
 
 def git_update():
+    print("Updating software...")
     os.environ['GIT_USERNAME'] = "madsq98"
     os.environ['GIT_PASSWORD'] = "yuyatrA48a"
     repo = git.Repo(selfieOptions.HOME_LOCATION)
