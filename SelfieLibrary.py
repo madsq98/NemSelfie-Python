@@ -57,7 +57,8 @@ def pyGameTest():
 
             pygame.draw.rect(screen, GRAY, bottomLeftButton)
             pygame.draw.rect(screen, GRAY, bottomRightButton)
-            pygame.draw.line(screen, WHITE, (opt.SCREEN_Y - buttonHeight, opt.SCREEN_X / 2), (opt.SCREEN_Y, opt.SCREEN_X / 2), 2)
+            pygame.draw.line(screen, WHITE, (opt.SCREEN_X / 2, opt.SCREEN_Y - buttonHeight), (opt.SCREEN_X / 2, opt.SCREEN_Y), 2)
+            pygame.draw.line(screen, WHITE, (0, opt.SCREEN_Y - buttonHeight), (opt.SCREEN_X, opt.SCREEN_Y - buttonHeight), 2)
 
         if not takePicture:
             font = pygame.font.Font(None, 50)
