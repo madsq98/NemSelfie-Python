@@ -111,6 +111,7 @@ def pyGameTest():
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
             screen.blit(text, text_rect)
             if pygame.time.get_ticks() > (capturedImageSavedTimeStamp + 2000):
+                cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
                 newPicture()
 
         if not takePicture:
@@ -150,7 +151,7 @@ def pyGameTest():
                         if not capturedImage and (startFlashTimeStamp + opt.FLASH_DURATION + 50) < pygame.time.get_ticks():
                             capturedImagePy = cam.get_image()
                             capturedImage = True
-                            
+
 
             text = font.render(textToRender, True, (255, 255, 255))
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
