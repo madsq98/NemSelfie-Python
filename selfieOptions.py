@@ -1,4 +1,4 @@
-PICTURES_LOCATION = "/home/pi/NEMSELFIE/NemSelfie-Python/EventPictures/"
+PICTURES_LOCATION = "/home/pi/NEMSELFIE/nemselfie-python/EventPictures/"
 SCREEN_X = 800
 SCREEN_Y = 480
 
