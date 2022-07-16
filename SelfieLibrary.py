@@ -156,7 +156,7 @@ def pyGameTest():
                     pictureCountdownCounter += 1
 
             # Detect touch screen input
-            if event.type == pygame.FINGERDOWN:
+            if event.type == pygame.FINGERUP:
                 if not capturedImage:
                     takePicture = True
                 else:
