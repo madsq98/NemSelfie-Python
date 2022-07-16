@@ -9,6 +9,7 @@ import io
 import pygame.camera
 import pygame.image
 from pygame._sdl2 import touch
+import threading
 
 takePicture = False
 brightnessTimerSet = False
@@ -206,13 +207,11 @@ def pyGameTest():
 
                     # Check for press on Save Picture
                     if (buttonWidth < touch_x < opt.SCREEN_X) and (bottomLeft_y < touch_y < (bottomLeft_y + buttonHeight)):
-                        dt = datetime.now()
-                        ts = datetime.timestamp(dt)
-                        saveLocation = opt.PICTURES_LOCATION + "selfie-" + str(ts) + ".jpg"
-
-                        capturedImageSavedTimeStamp = pygame.time.get_ticks()
-                        pygame.image.save(image1, saveLocation)
+                        th = threading.Thread(target=saveImage, args=(image1))
+                        th.start()
+                        th.join()
                         capturedImageSaved = True
+                        capturedImageSavedTimeStamp = pygame.time.get_ticks()
             if event.type == pygame.KEYDOWN:
                 cam.stop()
                 pygame.quit()
@@ -221,3 +220,9 @@ def pyGameTest():
             if event.type == pygame.QUIT:
                 cam.stop()
                 pygame.quit()
+
+def saveImage(image):
+    dt = datetime.now()
+    ts = datetime.timestamp(dt)
+    saveLocation = opt.PICTURES_LOCATION + "selfie-" + str(ts) + ".jpg"
+    pygame.image.save(image, saveLocation)
