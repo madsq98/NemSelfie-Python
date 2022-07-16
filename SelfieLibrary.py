@@ -8,20 +8,22 @@ import pygame
 import io
 import pygame.camera
 
+takePicture = False
+brightnessTimerSet = False
+brightnessCounter = opt.IDDLE_BRIGHTNESS
+brightnessTimerDone = False
 
-def pyGameTest():
-    pygame.init()
-    pygame.camera.init()
+pictureCountdownTimerSet = False
+pictureCountdownCounter = 0
 
-    pygame.mouse.set_visible(False)
+startFlash = False
+startFlashTimeStamp = 0
 
-    screen = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y), 0)
-    cam_list = pygame.camera.list_cameras()
-    cam = pygame.camera.Camera(cam_list[0], (opt.SCREEN_X, opt.SCREEN_Y))
-    cam.start()
+capturedImage = False
+capturedImagePy = None
 
-    cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
-
+def newPicture():
+    global capturedImage, takePicture, brightnessCounter, brightnessTimerDone, brightnessTimerSet, pictureCountdownTimerSet, pictureCountdownCounter, startFlash, startFlashTimeStamp, capturedImagePy
     takePicture = False
     brightnessTimerSet = False
     brightnessCounter = opt.IDDLE_BRIGHTNESS
@@ -35,6 +37,22 @@ def pyGameTest():
 
     capturedImage = False
     capturedImagePy = None
+
+def pyGameTest():
+    global capturedImage, takePicture, brightnessCounter, brightnessTimerDone, brightnessTimerSet, pictureCountdownTimerSet, pictureCountdownCounter, startFlash, startFlashTimeStamp, capturedImagePy
+    pygame.init()
+    pygame.camera.init()
+
+    pygame.mouse.set_visible(False)
+
+    screen = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y), 0)
+    cam_list = pygame.camera.list_cameras()
+    cam = pygame.camera.Camera(cam_list[0], (opt.SCREEN_X, opt.SCREEN_Y))
+    cam.start()
+
+    cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
+
+
     while True:
         if not capturedImage:
             image1 = cam.get_image()
