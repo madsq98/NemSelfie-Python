@@ -44,7 +44,7 @@ def upload_pictures():
         fullPath = os.path.join(selfieOptions.PICTURES_LOCATION, pictureUrl)
         print("Uploading " + fullPath)
         file = open(fullPath, 'rb')
-        session.storbinary('STOR ' + pictureUrl)
+        session.storbinary('STOR ' + pictureUrl, file)
         file.close()
         os.remove(fullPath)
 
