@@ -31,7 +31,7 @@ def pyGameTest():
         for event in pygame.event.get():
             if event.type == pygame.FINGERDOWN:
                 cam.set_controls(False, False, 100)
-                takePicture = True
+                #takePicture = True
 
             if event.type == pygame.QUIT:
                 cam.stop()
