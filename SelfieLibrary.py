@@ -62,6 +62,9 @@ def pyGameTest():
                 textToRender = opt.PICTURE_TEXT_3
             else:
                 textToRender = ""
+                cam.set_controls(False, False, opt.FLASH_BRIGHTNESS)
+                sleep(0.2)
+                cam.set_controls(False, False, opt.PICTURE_BRIGHTNESS)
 
             text = font.render(textToRender, True, (255, 255, 255))
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
@@ -79,7 +82,7 @@ def pyGameTest():
                     brightnessTimerDone = True
 
             if event.type == pygame.USEREVENT and brightnessTimerDone == True and pictureCountdownTimerSet == True:
-                if pictureCountdownCounter < 3:
+                if pictureCountdownCounter <= 3:
                     pictureCountdownCounter += 1
 
             # Detect touch screen input
