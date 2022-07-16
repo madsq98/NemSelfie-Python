@@ -69,7 +69,7 @@ def pyGameTest():
                     startFlash = True
                     startFlashTimeStamp = pygame.time.get_ticks()
                 else:
-                    if (startFlash + opt.FLASH_DURATION) < pygame.time.get_ticks():
+                    if (startFlashTimeStamp + opt.FLASH_DURATION) < pygame.time.get_ticks():
                         cam.set_controls(False, False, opt.PICTURE_BRIGHTNESS)
 
             text = font.render(textToRender, True, (255, 255, 255))
