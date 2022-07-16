@@ -21,7 +21,7 @@ def pyGameTest():
     while True:
         image1 = cam.get_image()
         image1 = pygame.transform.scale(image1, (800, 480))
-        if takePicture:
+        if not takePicture:
             screen.blit(image1, (0, 0))
         else:
             screen.fill((0, 0, 0))
