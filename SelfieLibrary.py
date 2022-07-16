@@ -161,7 +161,8 @@ def pyGameTest():
                 if not capturedImage:
                     takePicture = True
                 else:
-                    print(str(event.x))
+                    print('X:' + str(event.x))
+                    print('Y:' + str(event.y))
             if event.type == pygame.KEYDOWN:
                 cam.stop()
                 pygame.quit()
