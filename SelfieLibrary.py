@@ -29,7 +29,7 @@ def pyGameTest():
         pygame.display.update()
 
         for event in pygame.event.get():
-            if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.type == pygame.MOUSEBUTTONDOWN | event.type == pygame.KEYDOWN:
                 cam.set_controls(False, False, 100)
                 takePicture = True
 
