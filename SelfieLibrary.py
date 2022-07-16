@@ -79,7 +79,7 @@ def pyGameTest():
                     if (startFlashTimeStamp + opt.FLASH_DURATION) < pygame.time.get_ticks():
                         cam.set_controls(False, False, opt.PICTURE_BRIGHTNESS)
 
-                        if not capturedImage:
+                        if not capturedImage and (startFlashTimeStamp + opt.FLASH_DURATION + 50) < pygame.time.get_ticks():
                             capturedImagePy = cam.get_image()
                             capturedImage = True
 
