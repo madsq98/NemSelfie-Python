@@ -79,7 +79,7 @@ def pyGameTest():
                     brightnessTimerDone = True
 
             if event.type == pygame.USEREVENT and brightnessTimerDone == True and pictureCountdownTimerSet == True:
-                if pictureCountdownCounter < 3 & brightnessTimerDone:
+                if pictureCountdownCounter < 3:
                     pictureCountdownCounter += 1
 
             # Detect touch screen input
