@@ -53,7 +53,7 @@ def pyGameTest():
 
     screen = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y), 0)
     cam_list = pygame.camera.list_cameras()
-    cam = pygame.camera.Camera(cam_list[0], (opt.PICTURE_WIDTH, opt.PICTURE_HEIGHT))
+    cam = pygame.camera.Camera(cam_list[0], (opt.PICTURE_WIDTH_PREVIEW, opt.PICTURE_HEIGHT_PREVIEW))
     cam.start()
 
     cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
@@ -145,12 +145,18 @@ def pyGameTest():
                     startFlash = True
                     startFlashTimeStamp = pygame.time.get_ticks()
                 else:
+                    cam.stop()
+                    cam = pygame.camera.Camera(cam_list[0], (opt.PICTURE_WIDTH_SAVE, opt.PICTURE_HEIGHT_SAVE))
+                    cam.start()
                     if (startFlashTimeStamp + opt.FLASH_DURATION) < pygame.time.get_ticks():
                         cam.set_controls(False, False, opt.PICTURE_BRIGHTNESS)
 
                         if not capturedImage and (startFlashTimeStamp + opt.FLASH_DURATION + 50) < pygame.time.get_ticks():
                             capturedImagePy = cam.get_image()
                             capturedImage = True
+
+                            cam.stop()
+                            cam = pygame.camera.Camera(cam_list[0], (opt.PICTURE_WIDTH_PREVIEW, opt.PICTURE_HEIGHT_PREVIEW))
 
 
             text = font.render(textToRender, True, (255, 255, 255))
