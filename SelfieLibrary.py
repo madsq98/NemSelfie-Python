@@ -150,6 +150,7 @@ def pyGameTest():
                         if not capturedImage and (startFlashTimeStamp + opt.FLASH_DURATION + 50) < pygame.time.get_ticks():
                             capturedImagePy = cam.get_image()
                             capturedImage = True
+                            
 
             text = font.render(textToRender, True, (255, 255, 255))
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
