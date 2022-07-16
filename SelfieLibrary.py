@@ -44,7 +44,7 @@ def pyGameTest():
                 pygame.time.set_timer(pygame.USEREVENT, 50)
                 brightnessTimerSet = True
 
-            if pictureCountdownTimerSet == False & brightnessTimerDone == True:
+            if pictureCountdownTimerSet == False and brightnessTimerDone == True:
                 pygame.time.set_timer(pygame.USEREVENT, 1000)
                 pictureCountdownTimerSet = True
 
@@ -69,14 +69,14 @@ def pyGameTest():
 
         for event in pygame.event.get():
             # Functionality for fading from Iddle Brightness to Picture Brightness
-            if event.type == pygame.USEREVENT & brightnessTimerDone == False:
+            if event.type == pygame.USEREVENT and brightnessTimerDone == False:
                 if brightnessCounter < opt.PICTURE_BRIGHTNESS:
                     brightnessCounter += 1
                     cam.set_controls(False, False, brightnessCounter)
                 else:
                     brightnessTimerDone = True
 
-            if event.type == pygame.USEREVENT & brightnessTimerDone == True:
+            if event.type == pygame.USEREVENT and brightnessTimerDone == True:
                 if pictureCountdownCounter < 3 & brightnessTimerDone:
                     pictureCountdownCounter += 1
 
