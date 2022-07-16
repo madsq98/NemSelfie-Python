@@ -17,7 +17,7 @@ def pyGameTest():
     cam = pygame.camera.Camera(cam_list[0], (opt.SCREEN_X, opt.SCREEN_Y))
     cam.start()
 
-    cam.set_controls(False, False, 28)
+    cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
 
     takePicture = False
     while True:
@@ -28,20 +28,22 @@ def pyGameTest():
 
         if not takePicture:
             font = pygame.font.Font(None, 50)
-            text = font.render("Tryk her for at tage et NemSelfie! :-)", True, (255, 255, 255))
+            text = font.render(opt.IDDLE_TEXT, True, (255, 255, 255))
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
             screen.blit(text, text_rect)
         else:
             font = pygame.font.Font(None, 50)
-            text = font.render("Er du klar?", True, (255, 255, 255))
+            text = font.render(opt.PICTURE_TEXT_BEFORE, True, (255, 255, 255))
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
             screen.blit(text, text_rect)
-            
+
         pygame.display.update()
 
         for event in pygame.event.get():
             if event.type == pygame.FINGERDOWN:
-                cam.set_controls(False, False, 50)
+                for i in range(opt.IDDLE_BRIGHTNESS, opt.PICTURE_BRIGHTNESS):
+                    cam.set_controls(False, False, i)
+                    sleep(0.03)
                 takePicture = True
 
             if event.type == pygame.QUIT:
