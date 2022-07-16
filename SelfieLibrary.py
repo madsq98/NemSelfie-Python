@@ -116,7 +116,7 @@ def pyGameTest():
 
             font = pygame.font.Font(None, 50)
 
-            if pictureCountdownCounter == 0:
+            if pictureCountdownCounter <= 0:
                 textToRender = opt.PICTURE_TEXT_BEFORE
             elif pictureCountdownCounter == 1:
                 textToRender = opt.PICTURE_TEXT_1
