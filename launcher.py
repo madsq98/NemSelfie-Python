@@ -44,6 +44,7 @@ def upload_pictures():
     for pictureUrl in res:
         fullPath = os.path.join(selfieOptions.PICTURES_LOCATION, pictureUrl)
         print("Uploading " + fullPath)
+        print("File size: " + str(os.path.getsize(fullPath) / 1000) + "kb")
         file = open(fullPath, 'rb')
         session.storbinary('STOR ' + pictureUrl, file)
         file.close()
