@@ -53,7 +53,7 @@ def pyGameTest():
 
     screen = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y), 0)
     cam_list = pygame.camera.list_cameras()
-    cam = pygame.camera.Camera(cam_list[0], (opt.SCREEN_X * 1.5, opt.SCREEN_Y * 1.5))
+    cam = pygame.camera.Camera(cam_list[0], (int(opt.SCREEN_X * 1.5), int(opt.SCREEN_Y * 1.5)))
     cam.start()
 
     cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
@@ -193,7 +193,7 @@ def pyGameTest():
                         saveLocation = opt.PICTURES_LOCATION + "selfie-" + str(ts) + ".jpg"
 
                         capturedImageSavedTimeStamp = pygame.time.get_ticks()
-                        pygame.image.save(image1, saveLocation)
+                        pygame.image.save(capturedImagePy, saveLocation)
                         capturedImageSaved = True
             if event.type == pygame.KEYDOWN:
                 cam.stop()
