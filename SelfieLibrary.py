@@ -153,7 +153,7 @@ def pyGameTest():
             else:
                 textToRender = ""
                 if not startFlash:
-                    cam.set_controls(False, False, opt.FLASH_BRIGHTNESS)
+                    #cam.set_controls(False, False, opt.FLASH_BRIGHTNESS)
                     startFlash = True
                     startFlashTimeStamp = pygame.time.get_ticks()
                 else:
@@ -182,7 +182,7 @@ def pyGameTest():
             if event.type == pygame.USEREVENT and brightnessTimerDone == False and brightnessTimerSet == True:
                 if brightnessCounter < opt.PICTURE_BRIGHTNESS:
                     brightnessCounter += 1
-                    #cam.set_controls(False, False, brightnessCounter)
+                    cam.set_controls(False, False, brightnessCounter)
                 else:
                     brightnessTimerDone = True
 
