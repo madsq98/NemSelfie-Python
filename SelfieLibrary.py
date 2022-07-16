@@ -48,7 +48,7 @@ def pyGameTest():
 
         for event in pygame.event.get():
             if event.type == pygame.USEREVENT:
-                if counter < opt.PICTURE_BRIGHTNESS
+                if counter < opt.PICTURE_BRIGHTNESS:
                     counter += 1
                     cam.set_controls(False, False, counter)
 
