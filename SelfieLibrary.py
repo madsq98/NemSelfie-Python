@@ -157,7 +157,11 @@ def pyGameTest():
 
             # Detect touch screen input
             if event.type == pygame.FINGERDOWN:
-                takePicture = True
+                if not capturedImage:
+                    takePicture = True
+                else:
+                    finger_pos = event.pos
+                    print(finger_pos)
 
             if event.type == pygame.KEYDOWN:
                 cam.stop()
