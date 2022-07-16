@@ -12,19 +12,27 @@ def pyGameTest():
 
     pygame.mouse.set_visible(False)
 
-    screen = pygame.display.set_mode((800, 480), 0)
+    screen = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y), 0)
     cam_list = pygame.camera.list_cameras()
-    cam = pygame.camera.Camera(cam_list[0], (800, 480))
+    cam = pygame.camera.Camera(cam_list[0], (opt.SCREEN_X, opt.SCREEN_Y))
     cam.start()
+
+    cam.set_controls(False, False, 35)
 
     takePicture = False
     while True:
         image1 = cam.get_image()
-        image1 = pygame.transform.scale(image1, (800, 480))
+        image1 = pygame.transform.scale(image1, (opt.SCREEN_X, opt.SCREEN_Y))
         if not takePicture:
             screen.blit(image1, (0, 0))
         else:
             screen.fill((0, 0, 0))
+
+        font = pygame.font.Font(None, 35)
+        text = font.render("Tryk her for at tage et NemSelfie! :-)", True, (255, 255, 255))
+        text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
+
+        screen.blit(text, text_rect)
 
         pygame.display.update()
 
