@@ -146,7 +146,7 @@ def pyGameTest():
 
         for event in pygame.event.get():
             # Functionality for fading from Iddle Brightness to Picture Brightness
-            if event.type == pygame.USEREVENT and brightnessTimerDone == False:
+            if event.type == pygame.USEREVENT and brightnessTimerDone == False and brightnessTimerSet == True:
                 if brightnessCounter < opt.PICTURE_BRIGHTNESS:
                     brightnessCounter += 1
                     cam.set_controls(False, False, brightnessCounter)
