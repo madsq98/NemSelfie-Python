@@ -13,3 +13,6 @@ PICTURE_TEXT_1 = "3..."
 PICTURE_TEXT_2 = "2..."
 PICTURE_TEXT_3 = "1..."
 PICTURE_TEXT_AFTER = "Tak! :-)"
+
+NEW_PICTURE_TEXT = "Tag nyt billede"
+KEEP_PICTURE_TEXT = "Gem billede"

@@ -52,13 +52,33 @@ def pyGameTest():
             GRAY = (150, 150, 150)
             WHITE = (255, 255, 255)
 
-            bottomLeftButton = pygame.Rect(0, opt.SCREEN_Y - buttonHeight, buttonWidth, buttonHeight)
-            bottomRightButton = pygame.Rect(buttonWidth, opt.SCREEN_Y - buttonHeight, buttonWidth, buttonHeight)
+            bottomLeft_x = 0
+            bottomLeft_y = opt.SCREEN_Y - buttonHeight
+            bottomLeft_x_center = bottomLeft_x + (buttonWidth / 2)
+            bottomLeft_y_center = bottomLeft_y + (buttonHeight / 2)
+
+            bottomRight_x = buttonWidth
+            bottomRight_y = opt.SCREEN_Y - buttonHeight
+            bottomRight_x_center = bottomRight_x + (buttonWidth / 2)
+            bottomRight_y_center = bottomLeft_y + (buttonHeight / 2)
+
+            bottomLeftButton = pygame.Rect(bottomLeft_x, bottomLeft_y, buttonWidth, buttonHeight)
+            bottomRightButton = pygame.Rect(bottomRight_x, bottomRight_y, buttonWidth, buttonHeight)
 
             pygame.draw.rect(screen, GRAY, bottomLeftButton)
             pygame.draw.rect(screen, GRAY, bottomRightButton)
             pygame.draw.line(screen, WHITE, (opt.SCREEN_X / 2, opt.SCREEN_Y - buttonHeight), (opt.SCREEN_X / 2, opt.SCREEN_Y), 2)
             pygame.draw.line(screen, WHITE, (0, opt.SCREEN_Y - buttonHeight), (opt.SCREEN_X, opt.SCREEN_Y - buttonHeight), 2)
+
+            font = pygame.font.Font(None, 35)
+            text_left = font.render(opt.NEW_PICTURE_TEXT, True, WHITE)
+            text_right = font.render(opt.KEEP_PICTURE_TEXT, True, WHITE)
+
+            left_rect = text_left.get_rect(center=(bottomLeft_x_center, bottomLeft_y_center))
+            right_rect = text_right.get_rect(center=(bottomRight_x_center, bottomRight_y_center))
+
+            screen.blit(text_left, left_rect)
+            screen.blit(text_right, right_rect)
 
         if not takePicture:
             font = pygame.font.Font(None, 50)
