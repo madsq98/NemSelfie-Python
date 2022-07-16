@@ -20,6 +20,9 @@ def pyGameTest():
     cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
 
     takePicture = False
+    timerSet = False
+    counter = opt.IDDLE_BRIGHTNESS
+
     while True:
         image1 = cam.get_image()
         image1 = pygame.transform.scale(image1, (opt.SCREEN_X, opt.SCREEN_Y))
@@ -37,13 +40,19 @@ def pyGameTest():
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
             screen.blit(text, text_rect)
 
+        if not timerSet & takePicture:
+            pygame.time.set_timer(pygame.USEREVENT, 50)
+            timerSet = True
+
         pygame.display.update()
 
         for event in pygame.event.get():
+            if event.type == pygame.USEREVENT:
+                if counter < opt.PICTURE_BRIGHTNESS
+                    counter += 1
+                    cam.set_controls(False, False, counter)
+
             if event.type == pygame.FINGERDOWN:
-                for i in range(opt.IDDLE_BRIGHTNESS, opt.PICTURE_BRIGHTNESS):
-                    cam.set_controls(False, False, i)
-                    sleep(0.03)
                 takePicture = True
 
             if event.type == pygame.QUIT:
