@@ -45,6 +45,18 @@ def pyGameTest():
 
         screen.blit(image1, (0, 0))
 
+        if capturedImage:
+            buttonWidth = opt.SCREEN_X / 2
+            buttonHeight = opt.SCREEN_Y / 6
+
+            GRAY = (150, 150, 150)
+
+            bottomLeftButton = pygame.Rect(0, opt.SCREEN_Y - buttonHeight, buttonWidth, buttonHeight)
+            bottomRightButton = pygame.Rect(buttonWidth + 1, opt.SCREEN_Y - buttonHeight, buttonWidth, buttonHeight)
+
+            pygame.draw.rect(screen, GRAY, bottomLeftButton)
+            pygame.draw.rect(screen, GRAY, bottomRightButton)
+
         if not takePicture:
             font = pygame.font.Font(None, 50)
             text = font.render(opt.IDDLE_TEXT, True, (255, 255, 255))
