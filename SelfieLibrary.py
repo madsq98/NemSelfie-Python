@@ -17,7 +17,7 @@ def pyGameTest():
     cam = pygame.camera.Camera(cam_list[0], (opt.SCREEN_X, opt.SCREEN_Y))
     cam.start()
 
-    cam.set_controls(False, False, 35)
+    cam.set_controls(False, False, 28)
 
     takePicture = False
     while True:
