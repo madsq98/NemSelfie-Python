@@ -182,7 +182,7 @@ def pyGameTest():
             if event.type == pygame.USEREVENT and brightnessTimerDone == False and brightnessTimerSet == True:
                 if brightnessCounter < opt.PICTURE_BRIGHTNESS:
                     brightnessCounter += 1
-                    cam.set_controls(False, False, brightnessCounter)
+                    #cam.set_controls(False, False, brightnessCounter)
                 else:
                     brightnessTimerDone = True
 
