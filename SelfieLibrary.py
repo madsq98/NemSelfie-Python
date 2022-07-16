@@ -15,7 +15,7 @@ brightnessCounter = opt.IDDLE_BRIGHTNESS
 brightnessTimerDone = False
 
 pictureCountdownTimerSet = False
-pictureCountdownCounter = 0
+pictureCountdownCounter = -1
 
 startFlash = False
 startFlashTimeStamp = 0
@@ -31,7 +31,7 @@ def newPicture():
     brightnessTimerDone = False
 
     pictureCountdownTimerSet = False
-    pictureCountdownCounter = 0
+    pictureCountdownCounter = -1
 
     startFlash = False
     startFlashTimeStamp = 0
