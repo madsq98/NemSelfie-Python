@@ -160,7 +160,7 @@ def pyGameTest():
                 if not capturedImage:
                     takePicture = True
                 else:
-                    finger_pos = event.pos
+                    finger_pos = pygame.mouse.get_pos()
                     print(finger_pos)
 
             if event.type == pygame.KEYDOWN:
