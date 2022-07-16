@@ -1,3 +1,5 @@
+import sys
+
 from picamera import PiCamera
 from time import sleep
 import selfieOptions as opt
@@ -83,6 +85,11 @@ def pyGameTest():
             # Detect touch screen input
             if event.type == pygame.FINGERDOWN:
                 takePicture = True
+
+            if event.type == pygame.KEYDOWN:
+                cam.stop()
+                pygame.quit()
+                sys.exit()
 
             if event.type == pygame.QUIT:
                 cam.stop()
