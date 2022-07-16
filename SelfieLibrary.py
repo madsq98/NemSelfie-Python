@@ -64,25 +64,26 @@ def pyGameTest():
 
         screen.blit(image1, (0, 0))
 
+        buttonWidth = opt.SCREEN_X / 2
+        buttonHeight = opt.SCREEN_Y / 6
+
+        GRAY = (150, 150, 150)
+        WHITE = (255, 255, 255)
+
+        bottomLeft_x = 0
+        bottomLeft_y = opt.SCREEN_Y - buttonHeight
+        bottomLeft_x_center = bottomLeft_x + (buttonWidth / 2)
+        bottomLeft_y_center = bottomLeft_y + (buttonHeight / 2)
+
+        bottomRight_x = buttonWidth
+        bottomRight_y = opt.SCREEN_Y - buttonHeight
+        bottomRight_x_center = bottomRight_x + (buttonWidth / 2)
+        bottomRight_y_center = bottomLeft_y + (buttonHeight / 2)
+
+        bottomLeftButton = pygame.Rect(bottomLeft_x, bottomLeft_y, buttonWidth, buttonHeight)
+        bottomRightButton = pygame.Rect(bottomRight_x, bottomRight_y, buttonWidth, buttonHeight)
+
         if capturedImage:
-            buttonWidth = opt.SCREEN_X / 2
-            buttonHeight = opt.SCREEN_Y / 6
-
-            GRAY = (150, 150, 150)
-            WHITE = (255, 255, 255)
-
-            bottomLeft_x = 0
-            bottomLeft_y = opt.SCREEN_Y - buttonHeight
-            bottomLeft_x_center = bottomLeft_x + (buttonWidth / 2)
-            bottomLeft_y_center = bottomLeft_y + (buttonHeight / 2)
-
-            bottomRight_x = buttonWidth
-            bottomRight_y = opt.SCREEN_Y - buttonHeight
-            bottomRight_x_center = bottomRight_x + (buttonWidth / 2)
-            bottomRight_y_center = bottomLeft_y + (buttonHeight / 2)
-
-            bottomLeftButton = pygame.Rect(bottomLeft_x, bottomLeft_y, buttonWidth, buttonHeight)
-            bottomRightButton = pygame.Rect(bottomRight_x, bottomRight_y, buttonWidth, buttonHeight)
 
             pygame.draw.rect(screen, GRAY, bottomLeftButton)
             pygame.draw.rect(screen, GRAY, bottomRightButton)
@@ -163,8 +164,11 @@ def pyGameTest():
                 else:
                     touch_x = event.x * opt.SCREEN_X
                     touch_y = event.y * opt.SCREEN_Y
-                    print('X: ' + str(touch_x))
-                    print('Y: ' + str(touch_y))
+
+                    # Check for press on New Picture
+                    if (bottomLeft_x < touch_x < buttonWidth) and (
+                            bottomLeft_y < touch_y < (bottomLeft_y + buttonHeight)):
+                        newPicture()
             if event.type == pygame.KEYDOWN:
                 cam.stop()
                 pygame.quit()
