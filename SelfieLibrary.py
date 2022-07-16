@@ -193,7 +193,7 @@ def pyGameTest():
                         saveLocation = opt.PICTURES_LOCATION + "selfie-" + str(ts) + ".jpg"
 
                         capturedImageSavedTimeStamp = pygame.time.get_ticks()
-                        pygame.image.save(capturedImagePy, saveLocation)
+                        pygame.image.save(image1, saveLocation)
                         capturedImageSaved = True
             if event.type == pygame.KEYDOWN:
                 cam.stop()
