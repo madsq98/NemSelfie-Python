@@ -78,7 +78,7 @@ def pyGameTest():
                 else:
                     brightnessTimerDone = True
 
-            if event.type == pygame.USEREVENT and brightnessTimerDone == True:
+            if event.type == pygame.USEREVENT and brightnessTimerDone == True and pictureCountdownTimerSet == True:
                 if pictureCountdownCounter < 3 & brightnessTimerDone:
                     pictureCountdownCounter += 1
 
