@@ -161,15 +161,7 @@ def pyGameTest():
                 if not capturedImage:
                     takePicture = True
                 else:
-                    touchScreen = touch.get_device(0)
-                    activeFinger = touch.get_finger(touchScreen, 0)
-
-                    print(str(activeFinger))
-                    touch_x = activeFinger.get('x')
-                    touch_y = activeFinger.get('y')
-
-                    print('X: ' + str(touch_x))
-                    print('Y: ' + str(touch_y))
+                    print(str(touch.get_num_devices()))
             if event.type == pygame.KEYDOWN:
                 cam.stop()
                 pygame.quit()
