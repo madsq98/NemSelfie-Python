@@ -10,7 +10,7 @@ def pyGameTest():
     pygame.init()
     pygame.camera.init()
 
-    #pygame.mouse.set_visible(False)
+    pygame.mouse.set_visible(False)
 
     screen = pygame.display.set_mode((800, 480), 0)
     cam_list = pygame.camera.list_cameras()
