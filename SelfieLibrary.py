@@ -30,6 +30,8 @@ def pyGameTest():
     pictureCountdownTimerSet = False
     pictureCountdownCounter = 0
 
+    startFlash = False
+    startFlashTimeStamp = 0
     while True:
         image1 = cam.get_image()
         image1 = pygame.transform.scale(image1, (opt.SCREEN_X, opt.SCREEN_Y))
@@ -62,9 +64,13 @@ def pyGameTest():
                 textToRender = opt.PICTURE_TEXT_3
             else:
                 textToRender = ""
-                cam.set_controls(False, False, opt.FLASH_BRIGHTNESS)
-                sleep(0.2)
-                cam.set_controls(False, False, opt.PICTURE_BRIGHTNESS)
+                if not startFlash:
+                    cam.set_controls(False, False, opt.FLASH_BRIGHTNESS)
+                    startFlash = True
+                    startFlashTimeStamp = pygame.time.get_ticks()
+                else:
+                    if (startFlash + opt.FLASH_DURATION) < pygame.time.get_ticks():
+                        cam.set_controls(False, False, opt.PICTURE_BRIGHTNESS)
 
             text = font.render(textToRender, True, (255, 255, 255))
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
