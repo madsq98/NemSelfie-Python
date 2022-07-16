@@ -24,6 +24,9 @@ def pyGameTest():
         pygame.display.update()
 
         for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                cam.set_controls(False, False, 100)
+
             if event.type == pygame.QUIT:
                 cam.stop()
                 pygame.quit()
