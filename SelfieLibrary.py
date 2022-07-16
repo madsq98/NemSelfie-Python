@@ -70,7 +70,8 @@ def pyGameTest():
         else:
             image1 = capturedImagePy
 
-        image1 = pygame.transform.scale(image1, (opt.SCREEN_X, opt.SCREEN_Y))
+        if not cameraStopped:
+            image1 = pygame.transform.scale(image1, (opt.SCREEN_X, opt.SCREEN_Y))
 
         screen.blit(image1, (0, 0))
 
