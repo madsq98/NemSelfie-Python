@@ -168,6 +168,7 @@ def pyGameTest():
                     # Check for press on New Picture
                     if (bottomLeft_x < touch_x < buttonWidth) and (
                             bottomLeft_y < touch_y < (bottomLeft_y + buttonHeight)):
+                        cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
                         newPicture()
             if event.type == pygame.KEYDOWN:
                 cam.stop()
