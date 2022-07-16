@@ -32,8 +32,9 @@ def upload_pictures():
     res = []
 
     for path in os.listdir(selfieOptions.PICTURES_LOCATION):
-        if os.path.isfile(os.path.join(selfieOptions.PICTURES_LOCATION, path)):
-            res.append(path)
+        fullPath = os.path.join(selfieOptions.PICTURES_LOCATION, path)
+        if os.path.isfile(fullPath):
+            res.append(fullPath)
 
     for pictureUrl in res:
         print("Uploading " + pictureUrl)
