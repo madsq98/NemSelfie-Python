@@ -46,8 +46,6 @@ def newPicture():
     capturedImageSaved = False
     capturedImageSavedTimeStamp = 0
 
-    cameraStopped = False
-
 def pyGameTest():
     global cameraStopped, capturedImageSaved, capturedImageSavedTimeStamp, capturedImage, takePicture, brightnessCounter, brightnessTimerDone, brightnessTimerSet, pictureCountdownTimerSet, pictureCountdownCounter, startFlash, startFlashTimeStamp, capturedImagePy
     pygame.init()
