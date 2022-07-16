@@ -162,8 +162,9 @@ def pyGameTest():
                     takePicture = True
                 else:
                     touchScreen = touch.get_device(0)
-                    activeFinger = pygame._sdl2.touch.get_finger(touchScreen, 0)
+                    activeFinger = touch.get_finger(touchScreen, 0)
 
+                    print(str(activeFinger))
                     touch_x = activeFinger.get('x')
                     touch_y = activeFinger.get('y')
 
