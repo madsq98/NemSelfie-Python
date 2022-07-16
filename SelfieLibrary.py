@@ -40,6 +40,10 @@ def pyGameTest():
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
             screen.blit(text, text_rect)
         else:
+            if not brightnessTimerSet:
+                pygame.time.set_timer(pygame.USEREVENT, 50)
+                brightnessTimerSet = True
+
             if pictureCountdownTimerSet == False & brightnessTimerDone == True:
                 pygame.time.set_timer(pygame.USEREVENT, 1000)
                 pictureCountdownTimerSet = True
@@ -60,10 +64,6 @@ def pyGameTest():
             text = font.render(textToRender, True, (255, 255, 255))
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
             screen.blit(text, text_rect)
-
-        if not brightnessTimerSet & takePicture:
-            pygame.time.set_timer(pygame.USEREVENT, 50)
-            brightnessTimerSet = True
 
         pygame.display.update()
 
