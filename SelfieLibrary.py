@@ -40,8 +40,9 @@ def pyGameTest():
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
             screen.blit(text, text_rect)
         else:
-            if not pictureCountdownTimerSet & brightnessTimerDone:
+            if pictureCountdownTimerSet == False & brightnessTimerDone == True:
                 pygame.time.set_timer(pygame.USEREVENT, 1000)
+                pictureCountdownTimerSet = True
 
             font = pygame.font.Font(None, 50)
 
@@ -68,13 +69,14 @@ def pyGameTest():
 
         for event in pygame.event.get():
             # Functionality for fading from Iddle Brightness to Picture Brightness
-            if event.type == pygame.USEREVENT:
-                if brightnessCounter < opt.PICTURE_BRIGHTNESS & brightnessTimerDone == False:
+            if event.type == pygame.USEREVENT & brightnessTimerDone == False:
+                if brightnessCounter < opt.PICTURE_BRIGHTNESS:
                     brightnessCounter += 1
                     cam.set_controls(False, False, brightnessCounter)
                 else:
                     brightnessTimerDone = True
 
+            if event.type == pygame.USEREVENT & brightnessTimerDone == True:
                 if pictureCountdownCounter < 3 & brightnessTimerDone:
                     pictureCountdownCounter += 1
 
