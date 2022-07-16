@@ -28,7 +28,7 @@ def pyGameTest():
         else:
             screen.fill((0, 0, 0))
 
-        font = pygame.font.Font(None, 35)
+        font = pygame.font.Font(None, 50)
         text = font.render("Tryk her for at tage et NemSelfie! :-)", True, (255, 255, 255))
         text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
 
