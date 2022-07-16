@@ -53,7 +53,7 @@ def pyGameTest():
 
     screen = pygame.display.set_mode((opt.SCREEN_X, opt.SCREEN_Y), 0)
     cam_list = pygame.camera.list_cameras()
-    cam = pygame.camera.Camera(cam_list[0], (int(opt.SCREEN_X * 1.5), int(opt.SCREEN_Y * 1.5)))
+    cam = pygame.camera.Camera(cam_list[0], (opt.PICTURE_WIDTH, opt.PICTURE_HEIGHT))
     cam.start()
 
     cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
