@@ -79,9 +79,10 @@ def pyGameTest():
                     if (startFlashTimeStamp + opt.FLASH_DURATION) < pygame.time.get_ticks():
                         cam.set_controls(False, False, opt.PICTURE_BRIGHTNESS)
 
-                        capturedImagePy = cam.get_image()
-                        capturedImage = True
-                        
+                        if not capturedImage:
+                            capturedImagePy = cam.get_image()
+                            capturedImage = True
+
             text = font.render(textToRender, True, (255, 255, 255))
             text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
             screen.blit(text, text_rect)
