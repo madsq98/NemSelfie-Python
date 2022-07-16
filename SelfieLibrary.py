@@ -10,14 +10,14 @@ def pyGameTest():
     pygame.init()
     pygame.camera.init()
 
-    screen = pygame.display.set_mode((640, 480), 0)
+    screen = pygame.display.set_mode((800, 480), 0)
     cam_list = pygame.camera.list_cameras()
-    cam = pygame.camera.Camera(cam_list[0], (32, 24))
+    cam = pygame.camera.Camera(cam_list[0], (800, 480))
     cam.start()
 
     while True:
         image1 = cam.get_image()
-        image1 = pygame.transform.scale(image1, (640, 480))
+        image1 = pygame.transform.scale(image1, (800, 480))
         screen.blit(image1, (0, 0))
         pygame.display.update()
 
