@@ -3,6 +3,7 @@ import os
 import selfieOptions
 from time import sleep
 import subprocess
+import ftplib
 
 try:
     import httplib  # python < 3.0
@@ -34,17 +35,26 @@ def upload_pictures():
     for path in os.listdir(selfieOptions.PICTURES_LOCATION):
         fullPath = os.path.join(selfieOptions.PICTURES_LOCATION, path)
         if os.path.isfile(fullPath):
-            res.append(fullPath)
+            res.append(path)
 
+    session = ftplib.FTP('linux111.unoeuro.com', 'qvistgaard.me', 'FRGka5Dmencr')
+    session.cwd('nemselfie')
+    session.cwd('uploads')
     for pictureUrl in res:
-        print("Uploading " + pictureUrl)
-        os.remove(pictureUrl)
-        sleep(2)
+        fullPath = os.path.join(selfieOptions.PICTURES_LOCATION, pictureUrl)
+        print("Uploading " + fullPath)
+        file = open(fullPath, 'rb')
+        session.storbinary('STOR ' + pictureUrl)
+        file.close()
+        os.remove(fullPath)
+
+    session.close()
 
 
 if have_internet():
-    upload_pictures()
     git_update()
+    upload_pictures()
+
 
 import main
 
