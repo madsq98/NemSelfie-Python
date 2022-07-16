@@ -7,6 +7,7 @@ from datetime import datetime
 import pygame
 import io
 import pygame.camera
+import pygame.image
 from pygame._sdl2 import touch
 
 takePicture = False
@@ -22,9 +23,11 @@ startFlashTimeStamp = 0
 
 capturedImage = False
 capturedImagePy = None
+capturedImageSaved = False
+capturedImageSavedTimeStamp = 0
 
 def newPicture():
-    global capturedImage, takePicture, brightnessCounter, brightnessTimerDone, brightnessTimerSet, pictureCountdownTimerSet, pictureCountdownCounter, startFlash, startFlashTimeStamp, capturedImagePy
+    global capturedImageSaved, capturedImageSavedTimeStamp, capturedImage, takePicture, brightnessCounter, brightnessTimerDone, brightnessTimerSet, pictureCountdownTimerSet, pictureCountdownCounter, startFlash, startFlashTimeStamp, capturedImagePy
     takePicture = False
     brightnessTimerSet = False
     brightnessCounter = opt.IDDLE_BRIGHTNESS
@@ -38,9 +41,11 @@ def newPicture():
 
     capturedImage = False
     capturedImagePy = None
+    capturedImageSaved = False
+    capturedImageSavedTimeStamp = 0
 
 def pyGameTest():
-    global capturedImage, takePicture, brightnessCounter, brightnessTimerDone, brightnessTimerSet, pictureCountdownTimerSet, pictureCountdownCounter, startFlash, startFlashTimeStamp, capturedImagePy
+    global capturedImageSaved, capturedImageSavedTimeStamp, capturedImage, takePicture, brightnessCounter, brightnessTimerDone, brightnessTimerSet, pictureCountdownTimerSet, pictureCountdownCounter, startFlash, startFlashTimeStamp, capturedImagePy
     pygame.init()
     pygame.camera.init()
 
@@ -83,7 +88,7 @@ def pyGameTest():
         bottomLeftButton = pygame.Rect(bottomLeft_x, bottomLeft_y, buttonWidth, buttonHeight)
         bottomRightButton = pygame.Rect(bottomRight_x, bottomRight_y, buttonWidth, buttonHeight)
 
-        if capturedImage:
+        if capturedImage and not capturedImageSaved:
 
             pygame.draw.rect(screen, GRAY, bottomLeftButton)
             pygame.draw.rect(screen, GRAY, bottomRightButton)
@@ -99,6 +104,14 @@ def pyGameTest():
 
             screen.blit(text_left, left_rect)
             screen.blit(text_right, right_rect)
+
+        if capturedImage and capturedImageSaved:
+            font = pygame.font.Font(None, 50)
+            text = font.render(opt.PICTURE_TEXT_AFTER, True, (255, 255, 255))
+            text_rect = text.get_rect(center=(opt.SCREEN_X / 2, opt.SCREEN_Y / 2))
+            screen.blit(text, text_rect)
+            if pygame.time.get_ticks() > (capturedImageSavedTimeStamp + 2000):
+                newPicture()
 
         if not takePicture:
             font = pygame.font.Font(None, 50)
@@ -170,6 +183,16 @@ def pyGameTest():
                             bottomLeft_y < touch_y < (bottomLeft_y + buttonHeight)):
                         cam.set_controls(False, False, opt.IDDLE_BRIGHTNESS)
                         newPicture()
+
+                    # Check for press on Save Picture
+                    if (buttonWidth < touch_x < opt.SCREEN_X) and (bottomLeft_y < touch_y < (bottomLeft_y + buttonHeight)):
+                        dt = datetime.now()
+                        ts = datetime.timestamp(dt)
+                        saveLocation = opt.PICTURES_LOCATION + "selfie-" + str(ts) + ".jpg"
+
+                        capturedImageSavedTimeStamp = pygame.time.get_ticks()
+                        pygame.image.save(image1, saveLocation)
+                        capturedImageSaved = True
             if event.type == pygame.KEYDOWN:
                 cam.stop()
                 pygame.quit()
